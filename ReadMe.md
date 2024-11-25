@@ -1,5 +1,7 @@
 # Registration/Login - PHP
 
+**Status: $${\color{red}Incomplete}$$**
+
 Final PHP CRUD project. It's a blog site utilizing MySQL as the database.
 
 <hr>
