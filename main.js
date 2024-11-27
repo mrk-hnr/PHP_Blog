@@ -18,3 +18,28 @@ const closeNav = () => {
   openNavButton.style.display = "inline-block";
   closeNavButton.style.display = "none";
 };
+
+// EVENT LISTENERS
+openNavButton.addEventListener("click", openNav);
+closeNavButton.addEventListener("click", closeNav);
+
+// DASHBOARD LEFT-RIGHT & ASIDE
+
+const sidebar = document.querySelector("aside");
+const showSidebarButton = document.getElementById("show__sidebar-button");
+const hideSidebarButton = document.getElementById("hide__sidebar-button");
+
+const showSideBar = () => {
+  sidebar.style.left = "0";
+  showSidebarButton.style.display = "none";
+  hideSidebarButton.style.display = "inline-block";
+};
+
+const hideSideBar = () => {
+  sidebar.style.left = "-100%";
+  showSidebarButton.style.display = "inline-block";
+  hideSidebarButton.style.display = "none";
+};
+
+showSidebarButton.addEventListener("click", showSideBar);
+hideSidebarButton.addEventListener("click", hideSideBar);
