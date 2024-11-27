@@ -146,6 +146,10 @@
   .dashboard main table tr:hover td {
     background: transparent;
   }
+
+  .sidebar__toggle {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 600px) {

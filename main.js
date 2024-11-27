@@ -28,6 +28,18 @@ closeNavButton.addEventListener("click", closeNav);
 const sidebar = document.querySelector("aside");
 const showSidebarButton = document.getElementById("show__sidebar-button");
 const hideSidebarButton = document.getElementById("hide__sidebar-button");
+const sidebarIcons = document.querySelector(".sidebar__icons");
+const sidebarToggle = document.querySelector(".sidebar__toggle");
+
+window.addEventListener("resize", (e) => {
+  if (window.matchMedia(`(min-width: 601px)`).matches) {
+    sidebarIcons.style.display = "none";
+    sidebarToggle.style.display = "none";
+  } else {
+    sidebarIcons.style.display = "block";
+    sidebarToggle.style.display = "block";
+  }
+});
 
 const showSideBar = () => {
   sidebar.style.left = "0";
