@@ -1,3 +1,4 @@
+// NAV
 // DECLARATIONS
 const navItems = document.querySelector(".nav__items");
 // const openNavButton = document.querySelector("#open__nav-button");
@@ -17,7 +18,3 @@ const closeNav = () => {
   openNavButton.style.display = "inline-block";
   closeNavButton.style.display = "none";
 };
-
-// EVENT LISTENERS
-openNavButton.addEventListener("click", openNav);
-closeNavButton.addEventListener("click", closeNav);
