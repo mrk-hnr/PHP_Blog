@@ -39,7 +39,7 @@ require "config/database.php";
 
                 <li class="nav__profile">
                     <div class="avatar">
-                        <img src="<?= ROOT_URL ?>images/default_avatar.png" alt="">
+                        <img src="<?= ROOT_URL ?>images/assets/default_avatar.png" alt="">
                     </div>
                     <ul>
                         <li><a href="<?= ROOT_URL ?>admin/index.php">Dashboard</a></li>
