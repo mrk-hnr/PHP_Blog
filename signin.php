@@ -38,7 +38,7 @@
 
                     <button type="submit" class="button">Sign In</button>
                     <small>
-                        Don't have an account? <a href="signup.html">Sign Up</a>
+                        Don't have an account? <a href="signup.php">Sign Up</a>
                     </small>
                 </form>
             </div>
