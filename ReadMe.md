@@ -16,6 +16,7 @@ Final PHP CRUD project. It's a blog site utilizing MySQL as the database.
 **JavaScript**
 
 - Created script to make a functional burger menu
+- Created script for Dashboard side "nav" on tablet/mobile view
 
 <hr>
 
