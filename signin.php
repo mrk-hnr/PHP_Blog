@@ -1,3 +1,7 @@
+<?php
+require "config/constant.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +32,7 @@
             <div class="container form__section-container">
                 <h2>Sign In</h2>
                 <div class="alert__message success">
-                    <p>This is a succcess message!</p>
+                    <p>Registration Success!</p>
                 </div>
 
                 <form action="">

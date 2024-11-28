@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require "config/database.php";
 
 if (isset($_POST["submit"])) {
@@ -66,10 +66,13 @@ if (isset($_POST["submit"])) {
 
         // REDIRECT IF ERROR ENCOUNTERED
         if ($_SESSION["signup"]) {
+            $_SESSION["signup-data"] = $_POST; //  Retains all the data so no need to retype
             header("Location: " . ROOT_URL . "signup.php");
             die();
         } else {
-            $insert_user = "INSERT INTO users (firstname, lastname, username, email, password, avatar, is_admin) VALUES ('$firstname', '$lastname', '$username', '$email', '$password', '$avatar', 0 )";
+            $insert_user = "INSERT INTO users (firstname, lastname, username, email, password, avatar, is_admin) VALUES ('$firstname', '$lastname', '$username', '$email', '$hashed_password', '$avatar', 0 )";
+
+            $insert_user_result = mysqli_query($connection, $insert_user);
 
             if (!mysqli_errno($connection)) {
                 $_SESSION["signup-success"] = "Registration Success!";
