@@ -1,5 +1,14 @@
 <?php
 require "config/database.php";
+
+// FETCHES CURRENT USER DATA
+if (isset($_SESSION["user-id"])) {
+    $id = filter_var($_SESSION["user-id"], FILTER_SANITIZE_NUMBER_INT);
+    $query = "SELECT avatar FROM users WHERE id = '$id'";
+    $result = mysqli_query($connection, $query);
+    $avatar = mysqli_fetch_assoc($result);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -34,17 +43,19 @@ require "config/database.php";
                 <li><a href="<?= ROOT_URL ?>about.php">About</a></li>
                 <li><a href="<?= ROOT_URL ?>services.php">Services</a></li>
                 <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li>
-                <li><a href="<?= ROOT_URL ?>signin.php">Sign_In</a></li>
-
-                <li class="nav__profile">
-                    <div class="avatar">
-                        <img src="./images/assets/default_avatar.png" alt="">
-                    </div>
-                    <ul>
-                        <li><a href="<?= ROOT_URL ?>admin/index.php">Dashboard</a></li>
-                        <li><a href="<?= ROOT_URL ?>logout.php">Log Out</a></li>
-                    </ul>
-                </li>
+                <?php if (isset($_SESSION["user-id"])) : ?>
+                    <li class="nav__profile">
+                        <div class="avatar">
+                        <img src="<?= ROOT_URL . 'images/' . $avatar["avatar"] ?>" alt="">
+                        </div>
+                        <ul>
+                            <li><a href="<?= ROOT_URL ?>admin/index.php">Dashboard</a></li>
+                            <li><a href="<?= ROOT_URL ?>logout.php">Log Out</a></li>
+                        </ul>
+                    </li>
+                <?php else : ?>
+                    <li><a href="<?= ROOT_URL ?>signin.php">Sign_In</a></li>
+                <?php endif ?>
 
             </ul>
 

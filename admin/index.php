@@ -25,30 +25,32 @@ include "partials/header.php";
                         <h5>Manage Post</h5>
                     </a>
                 </li>
-                <li>
-                    <a href="users-add.php">
-                        <img src="../images/assets/user-add.svg" alt="" class="icons__manage">
-                        <h5>Add User</h5>
-                    </a>
-                </li>
-                <li>
-                    <a href="manage-users.php">
-                        <img src="../images/assets/user-manage.svg" alt="" class="icons__manage">
-                        <h5>Manage Users</h5>
-                    </a>
-                </li>
-                <li>
-                    <a href="category-add.php">
-                        <img src="../images/assets/edit.svg" class="icons__manage">
-                        <h5>Add Category</h5>
-                    </a>
-                </li>
-                <li>
-                    <a href="manage-category.php">
-                        <img src="../images/assets/manage-categories.svg" class="icons__manage">
-                        <h5>Manage Category</h5>
-                    </a>
-                </li>
+                <?php if (isset($_SESSION["user_is_admin"])) : ?> 
+                    <li>
+                        <a href="users-add.php">
+                            <img src="../images/assets/user-add.svg" alt="" class="icons__manage">
+                            <h5>Add User</h5>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="manage-users.php">
+                            <img src="../images/assets/user-manage.svg" alt="" class="icons__manage">
+                            <h5>Manage Users</h5>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="category-add.php">
+                            <img src="../images/assets/edit.svg" class="icons__manage">
+                            <h5>Add Category</h5>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="manage-category.php">
+                            <img src="../images/assets/manage-categories.svg" class="icons__manage">
+                            <h5>Manage Category</h5>
+                        </a>
+                    </li>
+                <?php endif ?>
             </ul>
         </aside>
         <main>
