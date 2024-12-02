@@ -18,9 +18,9 @@ if (isset($_SESSION["user-id"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/blog.css">
-    <link rel="stylesheet" href="./styles/dashboard.css">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/style.css">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/blog.css">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/dashboard.css">
 
     <!-- GOOGLE FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
