@@ -6,6 +6,15 @@ include "partials/header.php";
     <!-- START OF CATEGORY MANAGEMENT -->
 
     <section class="dashboard">
+    <?php if (isset($_SESSION["add-user-success"])) : ?>
+                <div class="alert__message success container">
+                    <p>
+                        <?= $_SESSION["add-user-success"];
+                        unset($_SESSION["add-user-success"]);
+                        ?>
+                    </p>
+                </div>
+            <?php endif ?>
         <div class="container dashboard__container">
             <button class="sidebar__toggle" id="show__sidebar-button">
                 <img src="images/right.svg" class="icons__manage sidebar__icons">
@@ -13,6 +22,8 @@ include "partials/header.php";
             <button class="sidebar__toggle" id="hide__sidebar-button">
                 <img src="images/left.svg" class="icons__manage sidebar__icons">
             </button>
+
+
             <aside>
                 <ul>
                     <li>
@@ -77,16 +88,6 @@ include "partials/header.php";
                             <td><a href="users-edit.php" class="button sm">Edit</a></td>
                             <td><a href="delete-category.php" class="button sm danger">Delete</a></td>
                             <td>Yes</td>
-                        </tr>
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>janesmith</td>
-                            <td><a href="users-edit.php" class="button sm">Edit</a></td>
-                            <td><a href="delete-category.php" class="button sm danger">Delete</a></td>
-                            <td>No</td>
-                        </tr>
-
-
                         </tr>
                     </tbody>
                 </table>

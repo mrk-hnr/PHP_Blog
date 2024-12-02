@@ -1,31 +1,47 @@
 <?php
 include "partials/header.php";
+
+// // GET FORM DATA if ERROR
+$firstname = $_SESSION["add-user-data"]["firstname"] ?? null;
+$lastname = $_SESSION["add-user-data"]["lastname"] ?? null;
+$username = $_SESSION["add-user-data"]["username"] ?? null;
+$email = $_SESSION["add-user-data"]["email"] ?? null;
+$createpassword = $_SESSION["add-user-data"]["createpassword"] ?? null;
+$confirmpassword = $_SESSION["add-user-data"]["confirmpassword"] ?? null;
+
+unset($_SESSION["add-user-data"]);
 ?>
 
 <main>
-    <!-- START OF ADD USERS -->
     <section class="form__section">
         <div class="container form__section-container">
             <h2>Add User</h2>
-            <div class="alert__message error">
-                <p>This is an error message!</p>
-            </div>
-            <form action="" enctype="multipart/form-data">
-                <input type="text" placeholder="First Name">
-                <input type="text" placeholder="Last Name">
-                <input type="text" placeholder="Username">
-                <input type="text" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <input type="password" placeholder="Confirm Password">
-                <select>
+            <?php if (isset($_SESSION["add-user"])) : ?>
+                <div class="alert__message error">
+                    <p>
+                        <?= $_SESSION["add-user"];
+                        unset($_SESSION["add-user"]);
+                        ?>
+                    </p>
+                </div>
+            <?php endif ?>
+            <form action="<?= ROOT_URL ?>admin/users-add-logic.php" enctype="multipart/form-data" method="POST">
+                <input type="text" name="firstname" value="<?= $firstname ?>" placeholder="First Name">
+                <input type="text" name="lastname"  value="<?= $lastname ?>" placeholder="Last Name">
+                <input type="text" name="username"  value="<?= $username ?>" placeholder="Username">
+                <input type="text" name="email"  value="<?= $email ?>"placeholder="Email">
+                <input type="password" name="createpassword" placeholder="Password">
+                <input type="password" name="confirmpassword" placeholder="Confirm Password">
+                <select name="user-role" class="userrole__default">
+                    <option value="0" class="userrole__default" disabled="disabled" selected="selected">Select Role (Defaul: Author)</option>
                     <option value="0">Author</option>
                     <option value="1">Admin</option>
                 </select>
                 <div class="form__control">
                     <label for="avatar">User Avatar</label>
-                    <input type="file" id="avatar">
+                    <input type="file" name="avatar" id="avatar">
                 </div>
-                <button type="submit" class="button">Add User</button>
+                <button type="submit" name="submit" class="button">Add User</button>
             </form>
         </div>
     </section>

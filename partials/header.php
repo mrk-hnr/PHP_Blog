@@ -21,6 +21,7 @@ if (isset($_SESSION["user-id"])) {
     <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/style.css">
     <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/blog.css">
     <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/dashboard.css">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/forms.css">
 
     <!-- GOOGLE FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
