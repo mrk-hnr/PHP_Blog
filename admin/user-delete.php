@@ -30,9 +30,9 @@ if (isset($_GET["id"])) {
     $delete_user_result = mysqli_query($connection, $delete_user_query);
 
     if (mysqli_errno($connection)) {
-        $_SESSION["delete-user"] = "Unable to delete user '{$user['firstname']}' '{$user['lastname']}'";
+        $_SESSION["delete-user"] = "Unable to delete user {$user['firstname']} {$user['lastname']}";
     } else {
-        $_SESSION["delete-user-success"] = "'{$user['firstname']}'{$user['lastname']}' has been deleted";
+        $_SESSION["delete-user-success"] = "{$user['firstname']} {$user['lastname']} has been deleted";
     }
 
     

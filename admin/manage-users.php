@@ -21,8 +21,7 @@ $users = mysqli_query($connection, $query);
                         ?>
                     </p>
                 </div>
-
-     <?php elseif (isset($_SESSION["edit-user-success"])) : ?> <!-- Edit User messsage -->
+            <?php elseif (isset($_SESSION["edit-user-success"])) : ?> <!-- Edit User messsage -->
                 <div class="alert__message success container">
                     <p>
                         <?= $_SESSION["edit-user-success"];
@@ -31,7 +30,7 @@ $users = mysqli_query($connection, $query);
                     </p>
                 </div>
 
-     <?php elseif (isset($_SESSION["edit-user"])) : ?> <!-- Edit User messsage -->
+            <?php elseif (isset($_SESSION["edit-user"])) : ?> <!-- Edit User messsage -->
                 <div class="alert__message error container">
                     <p>
                         <?= $_SESSION["edit-user"];
@@ -39,7 +38,27 @@ $users = mysqli_query($connection, $query);
                         ?>
                     </p>
                 </div>
-            <?php endif ?>
+                        
+            <?php elseif (isset($_SESSION["delete-user"])) : ?> <!-- DELETE User messsage -->
+                <div class="alert__message error container">
+                    <p>
+                        <?= $_SESSION["delete-user"];
+                        unset($_SESSION["delete-user"]);
+                        ?>
+                    </p>
+                </div>
+    
+            <?php elseif (isset($_SESSION["delete-user-success"])) : ?> <!-- DELETE User messsage -->
+                    <div class="alert__message success container">
+                    <p>
+                        <?= $_SESSION["delete-user-success"];
+                        unset($_SESSION["delete-user-success"]);
+                        ?>
+                    </p>
+                </div>
+
+        <?php endif ?>
+        
         <div class="container dashboard__container">
             <button class="sidebar__toggle" id="show__sidebar-button">
                 <img src="images/right.svg" class="icons__manage sidebar__icons">
