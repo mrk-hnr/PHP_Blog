@@ -112,7 +112,7 @@ $users = mysqli_query($connection, $query);
                             <td><?= "{$user['firstname']} {$user['lastname']}" ?></td>
                             <td><?= "{$user['username']}" ?></td>
                             <td><a href="<?= ROOT_URL?>admin/users-edit.php?id=<?= $user['id'] ?>" class="button sm">Edit</a></td>
-                            <td><a href="<?= ROOT_URL?>admin/delete-edit.php?id=<?= $user['id'] ?>" class="button sm danger">Delete</a></td>
+                            <td><a href="<?= ROOT_URL?>admin/user-delete.php?id=<?= $user['id'] ?>" class="button sm danger">Delete</a></td>
                             <td><?=  $user['is_admin'] ? 'Yes' : 'No'
                             ?></td>
                         </tr>
