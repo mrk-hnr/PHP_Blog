@@ -64,9 +64,9 @@ select {
   color: var(--primary-color-light);
 }
 
-.userrole__default {
-  color: blue !important;
-}
+/* .userrole__default {
+  color: gray !important;
+} */
 
 /* MEDIA QUERIES */
 

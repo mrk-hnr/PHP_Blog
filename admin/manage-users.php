@@ -13,11 +13,29 @@ $users = mysqli_query($connection, $query);
     <!-- START OF CATEGORY MANAGEMENT -->
 
     <section class="dashboard">
-    <?php if (isset($_SESSION["add-user-success"])) : ?>
+     <?php if (isset($_SESSION["add-user-success"])) : ?> <!-- Add User messsage -->
                 <div class="alert__message success container">
                     <p>
                         <?= $_SESSION["add-user-success"];
                         unset($_SESSION["add-user-success"]);
+                        ?>
+                    </p>
+                </div>
+
+     <?php elseif (isset($_SESSION["edit-user-success"])) : ?> <!-- Edit User messsage -->
+                <div class="alert__message success container">
+                    <p>
+                        <?= $_SESSION["edit-user-success"];
+                        unset($_SESSION["edit-user-success"]);
+                        ?>
+                    </p>
+                </div>
+
+     <?php elseif (isset($_SESSION["edit-user"])) : ?> <!-- Edit User messsage -->
+                <div class="alert__message error container">
+                    <p>
+                        <?= $_SESSION["edit-user"];
+                        unset($_SESSION["edit-user"]);
                         ?>
                     </p>
                 </div>
