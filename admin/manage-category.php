@@ -10,7 +10,7 @@ $categories = mysqli_query($connection, $query);
 <!-- START OF CATEGORY MANAGEMENT -->
 <section class="dashboard">
 
-    <?php if (isset($_SESSION["add-category-success"])) : ?> <!-- Add User messsage -->
+    <?php if (isset($_SESSION["add-category-success"])) : ?> <!-- SUCCESS MESSAGE for ADD CATEGORY -->
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION["add-category-success"];
@@ -19,11 +19,31 @@ $categories = mysqli_query($connection, $query);
             </p>
         </div>
 
-    <?php elseif (isset($_SESSION["add-category"])) : ?> <!-- Add User messsage -->
+    <?php elseif (isset($_SESSION["add-category"])) : ?> <!-- ERROR MESSAGE for ADD CATEGORY -->
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION["add-category"];
                 unset($_SESSION["add-category"]);
+                ?>
+            </p>
+        </div>
+
+    <?php endif ?>
+
+    <?php if (isset($_SESSION["edit-category-success"])) : ?> <!-- SUCCESS MESSAGE for EDIT CATEGORY  -->
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION["edit-category-success"];
+                unset($_SESSION["edit-category-success"]);
+                ?>
+            </p>
+        </div>
+
+    <?php elseif (isset($_SESSION["edit-category"])) : ?> <!-- ERROR MESSAGE for EDIT CATEGORY -->
+        <div class="alert__message error container">
+            <p>
+                <?= $_SESSION["edit-category"];
+                unset($_SESSION["edit-category"]);
                 ?>
             </p>
         </div>

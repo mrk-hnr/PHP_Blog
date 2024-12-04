@@ -13,51 +13,59 @@ $users = mysqli_query($connection, $query);
     <!-- START OF CATEGORY MANAGEMENT -->
 
     <section class="dashboard">
-     <?php if (isset($_SESSION["add-user-success"])) : ?> <!-- Add User messsage -->
-                <div class="alert__message success container">
-                    <p>
-                        <?= $_SESSION["add-user-success"];
-                        unset($_SESSION["add-user-success"]);
-                        ?>
-                    </p>
-                </div>
-            <?php elseif (isset($_SESSION["edit-user-success"])) : ?> <!-- Edit User messsage -->
-                <div class="alert__message success container">
-                    <p>
-                        <?= $_SESSION["edit-user-success"];
-                        unset($_SESSION["edit-user-success"]);
-                        ?>
-                    </p>
-                </div>
 
-            <?php elseif (isset($_SESSION["edit-user"])) : ?> <!-- Edit User messsage -->
-                <div class="alert__message error container">
-                    <p>
-                        <?= $_SESSION["edit-user"];
-                        unset($_SESSION["edit-user"]);
-                        ?>
-                    </p>
-                </div>
-                        
-            <?php elseif (isset($_SESSION["delete-user"])) : ?> <!-- DELETE User messsage -->
-                <div class="alert__message error container">
-                    <p>
-                        <?= $_SESSION["delete-user"];
-                        unset($_SESSION["delete-user"]);
-                        ?>
-                    </p>
-                </div>
-    
-            <?php elseif (isset($_SESSION["delete-user-success"])) : ?> <!-- DELETE User messsage -->
-                    <div class="alert__message success container">
-                    <p>
-                        <?= $_SESSION["delete-user-success"];
-                        unset($_SESSION["delete-user-success"]);
-                        ?>
-                    </p>
-                </div>
+    <?php if (isset($_SESSION["add-user-success"])) : ?> <!-- SUCCESS MESSAGE for ADD USER -->
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION["add-user-success"];
+                unset($_SESSION["add-user-success"]);
+                ?>
+            </p>
+        </div>
 
-        <?php endif ?>
+    <?php elseif (isset($_SESSION["add-user"])) : ?> <!-- ERROR MESSAGE for ADD USER -->
+        <div class="alert__message error container">
+            <p>
+                <?= $_SESSION["add-user"];
+                unset($_SESSION["add-user"]);
+                ?>
+            </p>
+        </div>
+    <?php endif ?>
+
+    <?php if (isset($_SESSION["edit-user-success"])) : ?> <!-- ERROR MESSAGE for EDIT USER -->
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION["edit-user-success"];
+                unset($_SESSION["edit-user-success"]);
+                ?>
+            </p>
+        </div>
+    <?php endif ?>
+
+    <?php if (isset($_SESSION["delete-user-success"])) : ?> <!-- SUCCESS MESSAGE for DELETE USER -->
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION["delete-user-success"];
+                unset($_SESSION["delete-user-success"]);
+                ?>
+            </p>
+        </div>
+
+    <?php elseif (isset($_SESSION["delete-user"])) : ?> <!-- ERROR MESSAGE for DELETE USER -->
+        <div class="alert__message error container">
+            <p>
+                <?= $_SESSION["delete-user"];
+                unset($_SESSION["delete-user"]);
+                ?>
+            </p>
+        </div>
+    <?php endif ?>
+        
+
+
+
+     
         
         <div class="container dashboard__container">
             <button class="sidebar__toggle" id="show__sidebar-button">
