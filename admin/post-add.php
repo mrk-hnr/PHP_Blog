@@ -35,7 +35,7 @@ unset($_SESSIOn["add-post-data"]);
 
                 <form action="<?= ROOT_URL ?>admin/post-add-logic.php" enctype="multipart/form-data" method="POST">
 
-                    <input type="text" name="title" placeholder="Title">
+                    <input type="text" name="title" placeholder="Title" value="<?= $title ?>">
                     <select name="category">
                         <?php while($category = mysqli_fetch_assoc($categories)) : ?>
                         <option value="<?= $category["id"]?>">
@@ -44,7 +44,7 @@ unset($_SESSIOn["add-post-data"]);
                         <?php endwhile ?>
       
                     </select>
-                    <textarea rows="10" name="body" placeholder="Body"></textarea>
+                    <textarea rows="10" name="body" placeholder="Body"> <?= $body ?></textarea>
 
                     <?php if(isset($_SESSION["user_is_admin"])) : ?>
 
