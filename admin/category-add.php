@@ -1,5 +1,11 @@
 <?php
 include "partials/header.php";
+
+// RETAINS INPUTS AFTER FAIELD ATTEMPT
+$title = $_SESSION["add-category-data"]["title"] ?? null;
+$description = $_SESSION["add-category-data"]["description"] ?? null;
+
+unset($_SESSION["add-category-data"]);
 ?>
 
 <main>
@@ -8,12 +14,21 @@ include "partials/header.php";
     <section class="form__section" enctype="multipart/form-data">
         <div class="container form__section-container">
             <h2>Add Category</h2>
-            <div class="alert__message error">
-                <p>This is an error message!</p>
-            </div>
+            
+            <?php if (isset($_SESSION["add-category"])) : ?>
+                <div class="alert__message error">
+                <p>
+                    <?= $_SESSION["add-category"];
+                    unset($_SESSION["add-category"]); ?>
+                </p>
+                </div>
+
+
+
+                <?php endif ?>
             <form action="<?= ROOT_URL?>admin/category-add-logic.php" method="POST">
-                <input type="text" name="title" placeholder="Title">
-                <textarea rows="4" name="description" placeholder="Description"></textarea>
+                <input type="text" name="title" placeholder="Title" value="<?= $title ?>">
+                <textarea rows="4" name="description" placeholder="Description" value="<?= $description ?>"></textarea>
                 <button type="submit" name="submit" class="button">Add Category</button>
             </form>
         </div>
