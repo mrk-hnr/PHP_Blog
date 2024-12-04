@@ -9,6 +9,27 @@ $categories = mysqli_query($connection, $query);
 
 <!-- START OF CATEGORY MANAGEMENT -->
 <section class="dashboard">
+
+    <?php if (isset($_SESSION["add-category-success"])) : ?> <!-- Add User messsage -->
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION["add-category-success"];
+                unset($_SESSION["add-category-success"]);
+                ?>
+            </p>
+        </div>
+
+    <?php elseif (isset($_SESSION["add-category"])) : ?> <!-- Add User messsage -->
+        <div class="alert__message error container">
+            <p>
+                <?= $_SESSION["add-category"];
+                unset($_SESSION["add-category"]);
+                ?>
+            </p>
+        </div>
+
+    <?php endif ?>
+
     <div class="container dashboard__container">
         <button class="sidebar__toggle" id="show__sidebar-button">
             <img src="<?= ROOT_URL ?>images/right.svg" class="icons__manage sidebar__icons">
