@@ -50,6 +50,26 @@ $categories = mysqli_query($connection, $query);
 
     <?php endif ?>
 
+    <?php if (isset($_SESSION["delete-category-success"])) : ?> <!-- SUCCESS MESSAGE for DELETE CATEGORY  -->
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION["delete-category-success"];
+                unset($_SESSION["delete-category-success"]);
+                ?>
+            </p>
+        </div>
+
+    <?php elseif (isset($_SESSION["delete-category"])) : ?> <!-- ERROR MESSAGE for DELETE CATEGORY -->
+        <div class="alert__message error container">
+            <p>
+                <?= $_SESSION["delete-category"];
+                unset($_SESSION["delete-category"]);
+                ?>
+            </p>
+        </div>
+
+    <?php endif ?>
+
     <div class="container dashboard__container">
         <button class="sidebar__toggle" id="show__sidebar-button">
             <img src="<?= ROOT_URL ?>images/right.svg" class="icons__manage sidebar__icons">
