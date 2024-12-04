@@ -1,5 +1,10 @@
 <?php
 include "partials/header.php";
+
+// FETCH CATEGORIES
+
+$query = "SELECT * FROM categories ORDER BY title DESC";
+$categories = mysqli_query($connection, $query);
 ?>
 
 <!-- START OF CATEGORY MANAGEMENT -->
@@ -60,6 +65,8 @@ include "partials/header.php";
         </aside>
         <main>
             <h2>Manage Categories</h2>
+
+            <?php if(mysqli_num_rows($categories) > 0) : ?>
             <table>
                 <thead>
                     <tr>
@@ -69,39 +76,26 @@ include "partials/header.php";
                     </tr>
                 </thead>
                 <tbody>
+                    <?php while($category = mysqli_fetch_assoc($categories)) :?>
                     <tr>
-                        <td>Nature</td>
-                        <td><a href="category-edit.php" class="button sm">Edit</a></td>
-                        <td><a href="delete-category.php" class="button sm danger">Delete</a></td>
+                        <td>
+                            <?= $category["title"] ?>
+                        </td>
+                        <td><a href="<?= ROOT_URL ?>admin/category-edit.php?id=<?= $category["id"] ?>" class="button sm">Edit</a></td>
+                        <td><a href="<?= ROOT_URL ?>admin/category-delete.php?id=<?= $category["id"] ?>" class="button sm danger">Delete</a></td>
                     </tr>
-                    <tr>
-                        <td>Career</td>
-                        <td><a href="category-edit.php" class="button sm">Edit</a></td>
-                        <td><a href="delete-category.php" class="button sm danger">Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>Technology</td>
-                        <td><a href="category-edit.php" class="button sm">Edit</a></td>
-                        <td><a href="delete-category.php" class="button sm danger">Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>Fitness</td>
-                        <td><a href="category-edit.php" class="button sm">Edit</a></td>
-                        <td><a href="delete-category.php" class="button sm danger">Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>Dating</td>
-                        <td><a href="category-edit.php" class="button sm">Edit</a></td>
-                        <td><a href="delete-category.php" class="button sm danger">Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>Travel</td>
-                        <td><a href="category-edit.php" class="button sm">Edit</a></td>
-                        <td><a href="delete-category.php" class="button sm danger">Delete</a></td>
-                    </tr>
-                    </tr>
+
+                    <?php endwhile ?>
+
+
+
                 </tbody>
             </table>
+            <?php else : ?>
+                <div class="alert__message error">
+                    <?= "No Categories Found!" ?>
+                </div>
+            <?php endif ?>
         </main>
     </div>
 </section>
