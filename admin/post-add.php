@@ -5,6 +5,11 @@ include "partials/header.php";
 $query = "SELECT * FROM categories";
 $categories = mysqli_query($connection, $query);
 
+$title = $_SESSION["add-post-data"]["title"] ?? null;
+$body = $_SESSION["add-post-data"]["body"] ?? null;
+
+// DELETE FORM DATA SESSION
+unset($_SESSIOn["add-post-data"]);
 ?>
 
     <main>
