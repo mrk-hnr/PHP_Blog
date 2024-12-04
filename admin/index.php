@@ -1,5 +1,11 @@
 <?php
 include "partials/header.php";
+
+// FETCH CURRENT USER's POSTS ONLY
+$current_user_id = $_SESSION["user-id"];
+$query = "SELECT posts.id, posts.title, posts.category_id FROM posts JOIN users ON posts.author_id = users.id WHERE posts.author_ID = $current_user_id ORDER BY posts.id DESC";
+$posts = mysqli_query($connection, $query);
+
 ?>
 
 <!-- START OF CATEGORY MANAGEMENT -->
@@ -67,6 +73,7 @@ include "partials/header.php";
         </aside>
         <main>
             <h2>Manage Post</h2>
+            <?php if (mysqli_num_rows($posts) > 0) : ?>
             <table>
                 <thead>
                     <tr>
@@ -77,20 +84,36 @@ include "partials/header.php";
                     </tr>
                 </thead>
                 <tbody>
+                    <?php while($post = mysqli_fetch_assoc($posts)) : ?>
+                        <!-- RETRIEVE CATEGORY TITLE FOR EACH POST from CATEGORY TABLE -->
+                         <?php
+                         $category_id = $post["category_id"];
+                         $category_query = "SELECT title FROM categories WHERE id = $category_id";
+                         $category_result = mysqli_query($connection, $category_query);
+                         $category = mysqli_fetch_assoc($category_result);
+                         ?>
+
+
+
                     <tr>
-                        <td>Lorem ipsum dolor sit.</td>
-                        <td>Technology</td>
-                        <td><a href="post-edit.php" class="button sm">Edit</a></td>
-                        <td><a href="delete-category.php" class="button sm danger">Delete</a></td>
+                        <td>
+                            <?= $post["title"] ?>
+                        </td>
+                        <td>
+                        <?= $category["title"] ?>
+                        </td>
+                        <td><a href="<?= ROOT_URL ?>admin/post-edit.php?id=<?= $post["id"]?>" class="button sm">Edit</a></td>
+                        <td><a href="<?= ROOT_URL ?>admin/post-delete.php?id=<?= $post["id"]?>" class="button sm danger">Delete</a></td>
                     </tr>
-                    <tr>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing.</td>
-                        <td>Travel</td>
-                        <td><a href="post-edit.php" class="button sm">Edit</a></td>
-                        <td><a href="delete-category.php" class="button sm danger">Delete</a></td>
-                    </tr>
+                    <?php endwhile ?>
+
                 </tbody>
             </table>
+            <?php else : ?>
+                <div class="alert__message error">
+                    <?= "No Post Found" ?>
+                </div>
+                <?php endif ?>
         </main>
     </div>
 </section>
