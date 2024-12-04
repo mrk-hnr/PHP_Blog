@@ -15,8 +15,6 @@ if (isset($_GET["id"])) {
 
 
 
-    // SPACE FOR DELETING USER'S POST
-
     // DELETE USER FROM DB
     $delete_category_query = "DELETE FROM categories WHERE id = $id";
     $delete_category_result = mysqli_query($connection, $delete_category_query);
@@ -27,9 +25,6 @@ if (isset($_GET["id"])) {
         $_SESSION["delete-category-success"] = "Category Deleted - {$category['title']}";
     }
 
-    
-
-    
 }
 
 header("Location: " . ROOT_URL . "admin/manage-category.php");

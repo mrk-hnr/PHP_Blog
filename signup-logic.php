@@ -43,7 +43,7 @@ if (isset($_POST["submit"])) {
                 $time = time(); // Will rename avatar based on the time generated which is always unique 
                 $avatar_name = $time . $avatar["name"];
                 $avatar_tmp_name = $avatar["tmp_name"];
-                $avatar_path = "images/" . $avatar_name;
+                $avatar_path = "images/users/" . $avatar_name;
 
                 // VALIDATES IF IMAGE IS AN ACTUAL IMAGE - does it match the accepted file format
                 $allowed_files = ["png", "jpg", "jpeg"];

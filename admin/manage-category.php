@@ -3,7 +3,7 @@ include "partials/header.php";
 
 // FETCH CATEGORIES
 
-$query = "SELECT * FROM categories ORDER BY title DESC";
+$query = "SELECT * FROM categories ORDER BY title ASC";
 $categories = mysqli_query($connection, $query);
 ?>
 

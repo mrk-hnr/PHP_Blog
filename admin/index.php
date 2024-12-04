@@ -4,6 +4,18 @@ include "partials/header.php";
 
 <!-- START OF CATEGORY MANAGEMENT -->
 <section class="dashboard">
+
+
+<?php if (isset($_SESSION["add-post-success"])) : ?> <!-- SUCCESS MESSAGE for ADD POST -->
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION["add-post-success"];
+                unset($_SESSION["add-post-success"]);
+                ?>
+            </p>
+        </div>
+    <?php endif ?>
+
     <div class="container dashboard__container">
         <button class="sidebar__toggle" id="show__sidebar-button">
             <img src="images/right.svg" class="icons__manage sidebar__icons">
