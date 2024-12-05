@@ -20,7 +20,19 @@ $posts = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
-    <?php endif ?>
+<?php endif ?>
+
+<?php if (isset($_SESSION["edit-post-success"])) : ?> <!-- SUCCESS MESSAGE for ADD POST -->
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION["edit-post-success"];
+                unset($_SESSION["edit-post-success"]);
+                ?>
+            </p>
+        </div>
+<?php endif ?>
+
+
 
     <div class="container dashboard__container">
         <button class="sidebar__toggle" id="show__sidebar-button">
