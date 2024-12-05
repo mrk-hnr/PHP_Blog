@@ -1,313 +1,89 @@
 <?php
 require "partials/header.php";
+
+$all_categories = "SELECT * FROM categories";
+$categories_result = mysqli_query($connection, $all_categories);
+
+if (isset($_GET["id"])) {
+    $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+    $query = "SELECT * FROM posts WHERE category_id = $id ORDER BY date_time DESC";
+    $posts = mysqli_query($connection, $query);
+
+} else {
+    header("Location: " . ROOT_URL . "blog.php");
+    die();
+}
 ?>
 
 <main>
     <!-- START OF CATEGORY POST -->
     <header class="category__title">
-        <h2>Category Title Placeholder</h2>
+        <h2>
+            <?php
+                $category_id = $id;
+                $category_query = "SELECT * FROM categories WHERE id = $id";
+                $category_result = mysqli_query($connection, $category_query);
+                $category = mysqli_fetch_assoc($category_result);
+                echo $category["title"]
+            ?>
+        </h2>
     </header>
     <!-- END OF CATEGORY POST -->
 
     <!-- START OF GENERAL POST -->
-    <section class="post">
-        <div class="container post__container">
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="/images/blog-2.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="" class="category__button">Nature</a>
-                    <h2 class="post__title">
-                        <a href="post.html">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia,
-                            aliquid.
-                            corrupti!</a>
-                    </h2>
-                    <p class="post__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos aut rem
-                        doloremque harum velit, nulla ullam fugiat. Officia, incidunt voluptatem?</p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="/images/profile-2.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: Jane Doe</h5>
-                            <small>February 16, 2024 - 10:34 AM</small>
+        <section class="post">
+            <div class="container post__container">
+                <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
+                <article class="post">
+                    <div class="post__thumbnail">
+                        <!-- <img src="/images/blog-2.jpg"> -->
+                        <img src="./images/posts_image/<?= $post["thumbnail"] ?>">
+                    </div>
+                    <div class="post__info">
+                        
+                        <h2 class="post__title">
+                            <a href="<?= ROOT_URL ?>post.php?id=<?= $post['id'] ?>"><?= $post["title"] ?></a>
+                        </h2>
+                        <p class="post__body"><?= substr($post["body"], 0, 100) ?>...</p>
+                        <div class="post__author">
+
+                        <?php 
+                        $author_id = $post["author_id"];
+                        $author_query = "SELECT * FROM users WHERE id = $author_id";
+                        $author_result = mysqli_query($connection, $author_query);
+                        $author = mysqli_fetch_assoc($author_result);
+
+                        ?>
+                            <div class="post__author-avatar">
+                            <img src="./images/users/<?= $author['avatar']?>">
+                            </div>
+                            <div class="post__author-info">
+                                <h5>By: <?= "{$author['firstname']} {$author['lastname']}" ?></h5>
+                                <small><?= date("M d, Y - H:i (D)", strtotime($post['date_time'])) ?></small>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
-            <!-- --------------------------------------------------------- -->
-            <!-- ------------------ ARTICLE SEPERATOR -------------------- -->
-            <!-- --------------------------------------------------------- -->
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="/images/blog-3.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category-post.html" class="category__button">Dating</a>
-                    <h2 class="post__title">
-                        <a href="post.html">Lorem ipsum dolor sit amet.
-                            aliquid.
-                            corrupti!</a>
-                    </h2>
-                    <p class="post__body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis,
-                        quibusdam quas et itaque soluta beatae.</p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="/images/profile-3.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: Samantha Hill</h5>
-                            <small>February 25, 2024 - 2:16 PM</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <!-- --------------------------------------------------------- -->
-            <!-- ------------------ ARTICLE SEPERATOR -------------------- -->
-            <!-- --------------------------------------------------------- -->
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="/images/blog-4.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category-post.html" class="category__button">Travel</a>
-                    <h2 class="post__title">
-                        <a href="post.html">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis,
-                            debitis?</a>
-                    </h2>
-                    <p class="post__body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt commodi
-                        enim quo eum ipsam ut dolor id distinctio voluptatum culpa.</p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="/images/profile-4.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: Jacob Nye</h5>
-                            <small>March 14, 2024 - 11:27 AM</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <!-- --------------------------------------------------------- -->
-            <!-- ------------------ ARTICLE SEPERATOR -------------------- -->
-            <!-- --------------------------------------------------------- -->
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="/images/blog-5.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="manage-category.html" class="category__button">Career</a>
-                    <h2 class="post__title">
-                        <a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
-                            possimus!</a>
-                    </h2>
-                    <p class="post__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-                        doloremque? Officiis facilis quod minus facere deserunt fuga mollitia voluptate?</p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="/images/profile-1.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: John Smith</h5>
-                            <small>March 30, 2024 - 10:04 AM</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <!-- --------------------------------------------------------- -->
-            <!-- ------------------ ARTICLE SEPERATOR -------------------- -->
-            <!-- --------------------------------------------------------- -->
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="/images/blog-6.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category-post.html" class="category__button">Nature</a>
-                    <h2 class="post__title">
-                        <a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse quia
-                            maiores unde?</a>
-                    </h2>
-                    <p class="post__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis cumque
-                        quibusdam repudiandae magni unde quisquam! Minus odit minima cumque id delectus, accusantium
-                        odio dolorem quo.</p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="/images/profile-2.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: Jane Doe</h5>
-                            <small>April 14, 2024 - 5:54 PM</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <!-- --------------------------------------------------------- -->
-            <!-- ------------------ ARTICLE SEPERATOR -------------------- -->
-            <!-- --------------------------------------------------------- -->
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="/images/blog-7.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category-post.html" class="category__button">Technology</a>
-                    <h2 class="post__title">
-                        <a href="post.html">Lorem ipsum dolor sit.</a>
-                    </h2>
-                    <p class="post__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-                        numquam unde necessitatibus molestias optio voluptates laudantium quam. At sapiente minima
-                        in vitae architecto nihil vel!</p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="/images/profile-1.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: John Smith</h5>
-                            <small>April 28, 2024 - 3:27 PM</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <!-- --------------------------------------------------------- -->
-            <!-- ------------------ ARTICLE SEPERATOR -------------------- -->
-            <!-- --------------------------------------------------------- -->
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="/images/blog-8.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category-post.html" class="category__button">Travel</a>
-                    <h2 class="post__title">
-                        <a href="post.html">Lorem ipsum dolor sit amet, consectetur adipisicing.</a>
-                    </h2>
-                    <p class="post__body">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis
-                        iusto, distinctio impedit earum ad veniam.</p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="/images/profile-4.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: Jacob Nye</h5>
-                            <small>May 15, 2024 - 9:20 AM</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <!-- --------------------------------------------------------- -->
-            <!-- ------------------ ARTICLE SEPERATOR -------------------- -->
-            <!-- --------------------------------------------------------- -->
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="/images/blog-9.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category-post.html" class="category__button">Dating</a>
-                    <h2 class="post__title">
-                        <a href="post.html">Lorem ipsum dolor sit amet.</a>
-                    </h2>
-                    <p class="post__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, earum?</p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="/images/profile-3.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: Samantha Hill</h5>
-                            <small>May 17, 2024 - 12:41 PM</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <!-- --------------------------------------------------------- -->
-            <!-- ------------------ ARTICLE SEPERATOR -------------------- -->
-            <!-- --------------------------------------------------------- -->
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="/images/blog-010.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category-post.html" class="category__button">Fitness</a>
-                    <h2 class="post__title">
-                        <a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus,
-                            animi?</a>
-                    </h2>
-                    <p class="post__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste similique
-                        doloremque delectus, impedit exercitationem commodi laboriosam. Et fuga in facere.</p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="/images/profile-5.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: Natasha Willow</h5>
-                            <small>May 23, 2024 - 2:06 PM</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <!-- --------------------------------------------------------- -->
-            <!-- ------------------ ARTICLE SEPERATOR -------------------- -->
-            <!-- --------------------------------------------------------- -->
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="/images/blog-011.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category-post.html" class="category__button">Nature</a>
-                    <h2 class="post__title">
-                        <a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, natus!</a>
-                    </h2>
-                    <p class="post__body">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem alias
-                        ipsa vitae libero dicta error repellendus, accusantium totam odio quae!</p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="/images/profile-2.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: Jane Doe</h5>
-                            <small>May 30, 2024 - 11:10 AM</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <!-- --------------------------------------------------------- -->
-            <!-- ------------------ ARTICLE SEPERATOR -------------------- -->
-            <!-- --------------------------------------------------------- -->
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="/images/blog-012.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category-post.html" class="category__button">Career</a>
-                    <h2 class="post__title">
-                        <a href="post.html">Lorem ipsum dolor sit amet, consectetur adipisicing.</a>
-                    </h2>
-                    <p class="post__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
-                        repudiandae odit ducimus libero error eos! Facere, quia?</p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="/images/profile-1.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: John Smith</h5>
-                            <small>June 1, 2024 - 9:46 AM</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
+                </article>
+
+                <?php endwhile ?>
+
+           
+
+
+            </div>
+        </section>
     <!-- END OF GENERAL POST -->
      
     <!-- START OF CATEGORY SECTIONS -->
     <section class="category__buttons">
-        <div class="container category__buttons-container">
-            <a href="" class="category__button">Nature</a>
-            <a href="" class="category__button">Career</a>
-            <a href="" class="category__button">Technology</a>
-            <a href="" class="category__button">Fitness</a>
-            <a href="" class="category__button">Dating</a>
-            <a href="" class="category__button">Travel</a>
-        </div>
-    </section>
+            <div class="container category__buttons-container">
+            <?php while ($categories = mysqli_fetch_assoc($categories_result)) : ?>
+                <a href="<?= ROOT_URL ?>category-post.php?id=<?= $categories["id"] ?>" class="category__button">
+                    <?= $categories["title"] ?></a>
+
+                <?php endwhile ?>
+            </div>
+        </section>
     <!-- END OF CATEGORY SECTIONS -->
 </main>
 <?php
