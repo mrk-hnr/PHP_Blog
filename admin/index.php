@@ -6,6 +6,7 @@ $current_user_id = $_SESSION["user-id"];
 $query = "SELECT posts.id, posts.title, posts.category_id FROM posts JOIN users ON posts.author_id = users.id WHERE posts.author_ID = $current_user_id ORDER BY posts.id DESC";
 $posts = mysqli_query($connection, $query);
 
+
 ?>
 
 <!-- START OF CATEGORY MANAGEMENT -->
@@ -22,7 +23,7 @@ $posts = mysqli_query($connection, $query);
         </div>
 <?php endif ?>
 
-<?php if (isset($_SESSION["edit-post-success"])) : ?> <!-- SUCCESS MESSAGE for ADD POST -->
+<?php if (isset($_SESSION["edit-post-success"])) : ?> <!-- SUCCESS MESSAGE for EDIT POST -->
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION["edit-post-success"];
@@ -31,6 +32,40 @@ $posts = mysqli_query($connection, $query);
             </p>
         </div>
 <?php endif ?>
+
+<?php if (isset($_SESSION["edit-post"])) : ?> <!-- ERROR MESSAGE for EDIT POST -->
+        <div class="alert__message error container">
+            <p>
+                <?= $_SESSION["edit-post"];
+                unset($_SESSION["edit-post"]);
+                ?>
+            </p>
+        </div>
+<?php endif ?>
+
+<?php if (isset($_SESSION["delete-post"])) : ?> <!-- ERROR MESSAGE for DELETE POST -->
+        <div class="alert__message error container">
+            <p>
+                <?= $_SESSION["delete-post"];
+                unset($_SESSION["delete-post"]);
+                ?>
+            </p>
+        </div>
+<?php endif ?>
+
+<?php if (isset($_SESSION["delete-post-success"])) : ?> <!-- SUCCESS MESSAGE for ADD POST -->
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION["delete-post-success"];
+                unset($_SESSION["delete-post-success"]);
+                ?>
+            </p>
+        </div>
+<?php endif ?>
+
+
+
+
 
 
 

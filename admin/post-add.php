@@ -44,7 +44,7 @@ unset($_SESSIOn["add-post-data"]);
                         <?php endwhile ?>
       
                     </select>
-                    <textarea rows="10" name="body" placeholder="Body"> <?= $body ?></textarea>
+                    <textarea rows="10" name="body" placeholder="Body"><?= $body ?></textarea>
 
                     <?php if(isset($_SESSION["user_is_admin"])) : ?>
 
