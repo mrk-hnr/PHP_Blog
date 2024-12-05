@@ -15,7 +15,7 @@ if (isset($_GET["id"])) {
 
         // LOCATES THE IMAGE ASSOCIATED WITH USER
         $avatar_name = $user["avatar"];
-        $avatar_path = "../images/" . $avatar_name;
+        $avatar_path = "../images/users/" . $avatar_name;
 
         // DELETES IMAGE IF FOUND
         if ($avatar_path) {
@@ -23,7 +23,21 @@ if (isset($_GET["id"])) {
         }
     }
 
-    // SPACE FOR DELETING USER'S POST
+    // DELETES ALL POSTS RELATED TO USER WHEN HIS PROFILE IS DELETED
+
+    $thumbnail_query = "SELECT thumbnail FROM posts WHERE author_id = $id";
+    $thumbnail_result = mysqli_query($connection, $thumbnail_query);
+
+    if (mysqli_num_rows($thumbnail_result) > 0) {
+        while($thumbnail = mysqli_fetch_assoc($thumbnail_result)) {
+            $thumbnail_path = "../images/posts_image/" . $thumbnail["thumbnail"];
+
+            // DELETE IMAGE
+            if ($thumbnail_path) {
+                unlink($thumbnail_path);
+            }
+        }
+    }
 
     // DELETE USER FROM DB
     $delete_user_query = "DELETE FROM users WHERE id = $id";

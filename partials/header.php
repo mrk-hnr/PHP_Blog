@@ -47,7 +47,7 @@ if (isset($_SESSION["user-id"])) {
                 <?php if (isset($_SESSION["user-id"])) : ?>
                     <li class="nav__profile">
                         <div class="avatar">
-                        <img src="<?= ROOT_URL . 'images/' . $avatar["avatar"] ?>" alt="">
+                        <img src="<?= ROOT_URL . 'images/users/' . $avatar["avatar"] ?>" alt="">
                         </div>
                         <ul>
                             <li><a href="<?= ROOT_URL ?>admin/index.php">Dashboard</a></li>
