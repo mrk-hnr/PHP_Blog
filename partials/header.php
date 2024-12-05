@@ -20,8 +20,16 @@ if (isset($_SESSION["user-id"])) {
 
     <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/style.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/blog.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/category-post.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/dashboard.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/forms.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/signups.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/styles/single-post.css?v=<?php echo time(); ?>">
+
+
+    
+    
+    
 
     <!-- GOOGLE FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +48,7 @@ if (isset($_SESSION["user-id"])) {
 
             <ul class="nav__items">
 
-                <li><a href="<?= ROOT_URL ?>blog.php">Blog</a></li>
+                <li><a href="<?= ROOT_URL ?>">Blog</a></li>
                 <li><a href="<?= ROOT_URL ?>about.php">About</a></li>
                 <li><a href="<?= ROOT_URL ?>services.php">Services</a></li>
                 <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li>
