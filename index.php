@@ -7,15 +7,15 @@ $featured_query = "SELECT * FROM posts WHERE is_featured = 1";
 $featured_result = mysqli_query($connection, $featured_query);
 $featured = mysqli_fetch_assoc($featured_result);
 
-$category_id = $featured["category_id"];
-$category_query = "SELECT * FROM categories WHERE id = $category_id";
-$category_result = mysqli_query($connection, $category_query);
-$category = mysqli_fetch_assoc($category_result);
+// $category_id = $featured["category_id"];
+// $category_query = "SELECT * FROM categories WHERE id = $category_id";
+// $category_result = mysqli_query($connection, $category_query);
+// $category = mysqli_fetch_assoc($category_result);
 
-$author_id = $featured["author_id"];
-$author_query = "SELECT * FROM users WHERE id = $author_id";
-$author_result = mysqli_query($connection, $author_query);
-$author = mysqli_fetch_assoc($author_result);
+// $author_id = $featured["author_id"];
+// $author_query = "SELECT * FROM users WHERE id = $author_id";
+// $author_result = mysqli_query($connection, $author_query);
+// $author = mysqli_fetch_assoc($author_result);
 
 // FETCH MAX of 9 POSTS FROM DB TO BE DISPLAYED IN HOME
 $post_query = "SELECT * FROM posts ORDER BY date_time DESC LIMIT 9";
@@ -39,12 +39,31 @@ $categories_result = mysqli_query($connection, $all_categories);
                     <img src="./images/posts_image/<?= $featured["thumbnail"] ?>">
                 </div>
                 <div class="post__info">
+
+                <?php 
+                $category_id = $featured["category_id"];
+                $category_query = "SELECT * FROM categories WHERE id = $category_id";
+                $category_result = mysqli_query($connection, $category_query);
+                $category = mysqli_fetch_assoc($category_result);
+
+                ?>
+
                     <a href="<?= ROOT_URL ?>category-post.php?id=<?= $category["id"] ?>" class="category__button"><?= $category["title"] ?></a>
                     <h2 class="post__title">
                         <a href="<?= ROOT_URL ?>post.php?id=<?= $featured["id"] ?>"><?= $featured["title"] ?></a>
                     </h2>
                     <p class="post__body"><?= substr($featured["body"], 0, 250) ?>...</p>
                     <div class="post__author">
+
+                    <?php 
+                    $author_id = $featured["author_id"];
+                    $author_query = "SELECT * FROM users WHERE id = $author_id";
+                    $author_result = mysqli_query($connection, $author_query);
+                    $author = mysqli_fetch_assoc($author_result);
+
+                    ?>
+
+
                         <div class="post__author-avatar">
                             <img src="./images/users/<?= $author['avatar']?>">
                         </div>
@@ -64,7 +83,7 @@ $categories_result = mysqli_query($connection, $all_categories);
         <!-- END OF FEATURED POST -->
         <!-- START OF GENERAL POST -->
 
-        <section class="post">
+        <section class="post <?= $featured ? '' : 'section__extra-margin' ?>">
             <div class="container post__container">
                 <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
                 <article class="post">

@@ -31,7 +31,12 @@ if (isset($_GET["id"])) {
     <!-- END OF CATEGORY POST -->
 
     <!-- START OF GENERAL POST -->
+
+
+    <?php if (mysqli_num_rows($posts) > 0) : ?>
         <section class="post">
+
+
             <div class="container post__container">
                 <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
                 <article class="post">
@@ -72,6 +77,14 @@ if (isset($_GET["id"])) {
 
             </div>
         </section>
+
+        <?php else : ?>
+
+            <div class="alert__message error lg">
+                <p>No Post Found</p>
+            </div>
+
+            <?php endif ?>
     <!-- END OF GENERAL POST -->
      
     <!-- START OF CATEGORY SECTIONS -->
