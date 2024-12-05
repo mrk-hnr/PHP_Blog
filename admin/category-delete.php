@@ -14,10 +14,10 @@ if (isset($_GET["id"])) {
 
     if (!mysqli_errno($connection)) {
         $query = "DELETE FROM categories WHERE id = $id LIMIT 1";
-        $result = mysqli_query($connection, $delete_category_query);
+        $result = mysqli_query($connection, $query);
         $_SESSION["delete-category-success"] = "Category Deleted - {$category['title']}";
     } else {
-        $_SESSION["delete-category"] = "Unable to delete category {$category['title']}";
+        $_SESSION["delete-category"] = "Unable to delete category";
     }
 }
 
