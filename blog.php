@@ -13,13 +13,13 @@ $categories_result = mysqli_query($connection, $all_categories);
 <main>
     <!-- START OF SEARCH BAR -->
     <section class="search__bar">
-        <form class="container search__bar-container" action="">
+        <form class="container search__bar-container" action="<?= ROOT_URL?>search.php" method="GET">
             <div>
                 <p class="icon__search">⌕</p>
                 <input type="search" name="search" placeholder="Search">
             </div>
-            <button type="submit" class="button">Search</button>
-        </form>
+            <button type="submit" name="submit" class="button">Search</button>
+        </form> 
     </section>
     <!-- END OF SEARCH BAR -->
 
