@@ -54,11 +54,20 @@ PRIMARY KEY (`id`)
 ```
 
 ```
-CREATE TABLE `blog`.`categories` (`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT , `title` VARCHAR(50) NOT NULL , `description` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `blog`.`categories` (`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT ,
+`title` VARCHAR(50) NOT NULL ,
+`description` TEXT NOT NULL ,
+PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ```
 
 ```
-CREATE TABLE `blog`.`posts` (`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT , `title` VARCHAR(255) NOT NULL , `body` TEXT NOT NULL , `thumbnail` VARCHAR(255) NOT NULL , `date_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `category_id` INT(11) UNSIGNED NULL , `author_id` INT(11) UNSIGNED NOT NULL , `is_featured` TINYINT(1) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `blog`.`posts` (`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT ,
+`title` VARCHAR(255) NOT NULL ,
+`body` TEXT NOT NULL , `thumbnail` VARCHAR(255) NOT NULL ,
+`date_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+`category_id` INT(11) UNSIGNED NULL , `author_id` INT(11) UNSIGNED NOT NULL ,
+`is_featured` TINYINT(1) NOT NULL ,
+PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ```
 
 ```
